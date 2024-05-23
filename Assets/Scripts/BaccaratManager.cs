@@ -26,8 +26,8 @@ public class BaccaratManager : MonoBehaviour
     private gamblescript gamble; // gamblescript 인스턴스를 참조할 변수
 
     private List<Card> deck; // 카드 덱
-    private List<Card> playerHand; // 플레이어의 손패
-    private List<Card> bankerHand; // 뱅커의 손패
+    private List<Card> playerHand; // 플레이어의 패
+    private List<Card> bankerHand; // 뱅커의 패
 
     void Start()
     {
