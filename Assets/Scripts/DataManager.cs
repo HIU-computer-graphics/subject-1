@@ -13,14 +13,44 @@ public class DataManager : MonoBehaviour
     public int BetAmountOnTie;
     public int Chip;
 
-    public GameStatus currentStatus;
+    private GameStatus currentStatus;
+
+    public CardManager cardManager;
+    public gamblescript gambleScript;
+    public DropPrefabs dropPrefabs;
 
     void Awake()
     {
         PlayerMoney = StartMoney;
         BetAmountOnPlayer = BetAmountOnBanker = BetAmountOnTie = 0;
-        currentStatus = GameStatus.Betting;
+        SetStatus(GameStatus.Betting);
         Chip = 0;
+
+        if (cardManager == null) {
+            cardManager = FindObjectOfType<CardManager>();
+        }
+        if (gambleScript == null) {
+            gambleScript = FindObjectOfType<gamblescript>();
+        }
+        if (dropPrefabs == null) {
+            dropPrefabs = FindObjectOfType<DropPrefabs>();
+        }
+    }
+
+    public GameStatus GetStatus() { return currentStatus; }
+
+    public void SetStatus(GameStatus status)
+    {
+        currentStatus = status;
+
+        if (status == GameStatus.Dealing) {
+            cardManager.GameStart();
+        } else if (status == GameStatus.Betting) {
+            BetAmountOnPlayer = BetAmountOnBanker = BetAmountOnTie = 0;
+            dropPrefabs.ClearAllPrefabs();
+            gambleScript.BetTurnStart();
+        }
+
     }
 }
 
