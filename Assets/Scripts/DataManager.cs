@@ -11,6 +11,7 @@ public class DataManager : MonoBehaviour
     public int BetAmountOnPlayer;
     public int BetAmountOnBanker;
     public int BetAmountOnTie;
+    public int Chip;
 
     public GameStatus currentStatus;
 
@@ -19,6 +20,7 @@ public class DataManager : MonoBehaviour
         PlayerMoney = StartMoney;
         BetAmountOnPlayer = BetAmountOnBanker = BetAmountOnTie = 0;
         currentStatus = GameStatus.Betting;
+        Chip = 0;
     }
 }
 
